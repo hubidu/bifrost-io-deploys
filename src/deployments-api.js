@@ -12,7 +12,7 @@ class DeploymentsApi {
         const DEPLOYMENTS_SERVER_URL = process.env.DEPLOYMENTS_SERVER_URL
         assert(DEPLOYMENTS_SERVER_URL, 'Please specify the DEPLOYMENTS_SERVER_URL environment variable')
 
-        const deployedAt = new Date()
+        const deployedAt = Date.now()
         assert(this.options.project, 'Please specify the project which has been deployed')
 
         return got.post(`${DEPLOYMENTS_SERVER_URL}/${API_TOKEN}/deployments`, {
