@@ -9,16 +9,18 @@ class DeploymentsApi {
 
     async report() {
         const API_TOKEN = process.env.DEPLOYMENTS_API_TOKEN || 'pseudo-token'
-        const DEPLOYMENTS_SERVER_URL = process.env.DEPLOYMENTS_SERVER_URL
-        assert(DEPLOYMENTS_SERVER_URL, 'Please specify the DEPLOYMENTS_SERVER_URL environment variable')
+        const DEPLOYMENTS_API_URL = process.env.DEPLOYMENTS_API_URL
+        assert(DEPLOYMENTS_API_URL, 'Please specify the DEPLOYMENTS_API_URL environment variable')
 
-        const deployedAt = Date.now()
         assert(this.options.project, 'Please specify the project which has been deployed')
 
-        return got.post(`${DEPLOYMENTS_SERVER_URL}/${API_TOKEN}/deployments`, {
-            body: Object.assign(this.options, {
-                    deployedAt
-                }),
+        const url = `${DEPLOYMENTS_API_URL}/${API_TOKEN}/deployments`
+        const body = Object.assign(this.options, {
+            deployedAt:  Date.now()
+        })
+        console.log(url, body)
+        return got.post(url, {
+            body,
             json: true
         });
     }
