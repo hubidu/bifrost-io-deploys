@@ -1,3 +1,3 @@
 const DeploymentsApi = require('./src/deployments-api')
 
-export default DeploymentsApi
+module.exports = DeploymentsApi
